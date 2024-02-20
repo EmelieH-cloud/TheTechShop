@@ -1,0 +1,83 @@
+[
+  {
+    "Id": 1,
+    "Name": "Samsung Smartphone",
+    "Description": "A high-quality smartphone with advanced features.",
+    "Category": "MobilePhones",
+    "ImageUrl": "/images/phone.jpg",
+    "Price":  1000
+  },
+  {
+    "Id": 2,
+    "Name": "Dell Laptop",
+    "Description": "A powerful laptop with fast processing speed and high-resolution display.",
+    "Category": "Laptops",
+    "ImageUrl": "/images/laptop3.jpg",
+    "Price": 2300
+  },
+  {
+    "Id": 3,
+    "Name": "Sony Headphones",
+    "Description": "Premium headphones with noise-cancelling technology for immersive audio experience.",
+    "Category": "Headphones",
+    "ImageUrl": "/images/headphones.jpg",
+    "Price": 1060
+  },
+  {
+    "Id": 4,
+    "Name": "iPhone",
+    "Description": "A sleek and modern smartphone with cutting-edge features.",
+    "Category": "MobilePhones",
+    "ImageUrl": "/images/phone.jpg",
+    "Price": 15000
+  },
+  {
+    "Id": 5,
+    "Name": "HP Laptop",
+    "Description": "A reliable laptop for both work and entertainment purposes.",
+    "Category": "Laptops",
+    "ImageUrl": "/images/laptop.jpg",
+    "Price": 100
+  },
+  {
+    "Id": 6,
+    "Name": "Bose Headphones",
+    "Description": "High-quality headphones with superior sound quality.",
+    "Category": "Headphones",
+    "ImageUrl": "/images/headphones2.jpg",
+    "Price": 10000
+  },
+  {
+    "Id": 7,
+    "Name": "Google Pixel",
+    "Description": "Innovative smartphone with top-of-the-line camera technology.",
+    "Category": "MobilePhones",
+    "ImageUrl": "/images/phone2.jpg",
+    "Price": 35000
+  },
+  {
+    "Id": 8,
+    "Name": "MacBook Pro",
+    "Description": "A premium laptop for professional users with exceptional performance.",
+    "Category": "Laptops",
+    "ImageUrl": "/images/laptop2.jpg",
+    "Price": 6770
+
+  },
+  {
+    "Id": 9,
+    "Name": "Sony Wireless Headphones",
+    "Description": "Wireless headphones with long battery life and comfortable design.",
+    "Category": "Headphones",
+    "ImageUrl": "/images/headphones3.jpg",
+    "Price": 5099
+  },
+  {
+    "Id": 10,
+    "Name": "OnePlus Smartphone",
+    "Description": "Affordable smartphone with flagship-level features.",
+    "Category": "MobilePhones",
+    "ImageUrl": "/images/phone2.jpg",
+    "Price": 10000
+  }
+]

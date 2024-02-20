@@ -1,0 +1,105 @@
+﻿@page "/product/{id:int}"
+@inject HttpClient Http
+
+<style>
+.productDiv {
+    width: 200px; /* Ange den önskade bredden */
+    height: 200px; /* Ange den önskade höjden */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Anpassa bilden utan att sträcka den */
+}
+</style>
+
+
+<h1>Product Detail</h1>
+ <div class="productDiv">
+<img src="@Product?.ImageUrl" class="card-img-top" alt="Product Image">
+</div>
+<p>ID: @Product?.Id</p>
+<p>Name: @Product?.Name</p>
+<p>Description: @Product?.Description</p>
+<p>Price: @Product?.Price sek</p>
+
+@if (ShoppingCart.CartItems.Any())
+{
+    <h2>Shopping Cart</h2>
+    <ul>
+       <li>Quantity: @Quantity</li>
+       <li>Total: @Sum() SEK</li>  
+
+    </ul>
+}
+else
+{
+    <p>Your shopping cart is empty.</p>
+}
+
+<button @onclick="AddToCart">Add to Cart</button>
+
+@code
+{
+    [Parameter]
+    public int Id { get; set; }
+
+    List<ProductModel>? Products { get; set; }
+    public int Quantity { get; set; }
+    ProductModel? Product { get; set; }
+    ShoppingCartService ShoppingCart { get; set; } = new ShoppingCartService();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Products = await Http.GetFromJsonAsync<List<ProductModel>>("sample-data/products.json") ?? new List<ProductModel>();
+        Product = Products.FirstOrDefault(p => p.Id == Id);
+    }
+
+    private void AddToCart()
+    {
+        if (Product != null)
+        {
+            ShoppingCart.AddToCart(Product);
+            Quantity++;
+        }
+    }
+
+    public int Sum()
+    {
+        int sum = 0;
+        foreach (var item in ShoppingCart.CartItems)
+        {
+            if (item.Price != null)
+            {
+                sum += (int)item.Price;
+            }
+        }
+        return sum;
+    }
+
+    public class ProductModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = null!;
+        public string? Description { get; set; }
+        public string? Category { get; set; }
+        public string? ImageUrl { get; set; }
+        public int? Price { get; set; }
+    }
+
+    public class ShoppingCartService
+    {
+        private List<ProductModel> _cartItems = new List<ProductModel>();
+
+        public List<ProductModel> CartItems => _cartItems;
+
+        public void AddToCart(ProductModel product)
+        {
+            _cartItems.Add(product);
+        }
+    }
+}

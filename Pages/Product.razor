@@ -1,0 +1,59 @@
+﻿@page "/products"
+@inject HttpClient Http
+
+<style>
+    .card-img-top {
+        height: 200px; 
+        object-fit: cover; 
+    }
+</style>
+
+<h1>Product List</h1>
+
+@if (Products != null && Products.Any())
+{
+    <div class="container">
+        <div class="row">
+            @foreach (var product in Products)
+            {
+                <div class="col-6 col-md-3 mb-4">
+                    <div class="card h-100">
+                        <img src="@product.ImageUrl" class="card-img-top" alt="Product Image">
+                        <div class="card-body">
+                            <h5 class="card-title"><a href="product/@product.Id">@product.Name</a></h5>
+                            <p class="card-text">@product.Description</p>
+                        </div>
+                        <div class="card-footer">
+                            <small class="text-muted">ID: @product.Id</small>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+}
+else
+{
+    <p>No products available.</p>
+}
+
+@code {
+    List<ProductModel>? Products { get; set; } 
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        Products = await Http.GetFromJsonAsync<List<ProductModel>>("sample-data/products.json") ?? new List<ProductModel>(); 
+    }
+
+    public class ProductModel
+    {
+        public int Id { get; set; }
+        public string Name { get; set; } = null!;
+        public string? Description { get; set; }
+        public string? Category { get; set; }
+        public string? ImageUrl { get; set; }
+        public int? Price { get; set; } 
+
+    }
+}
